@@ -16,6 +16,10 @@ simple_geoip = SimpleGeoIP(app)
 def home():
     """home route for html file"""
     geoip_data = simple_geoip.get_geoip_data()
-    return jsonify(data=geoip_data)
+    # print(type(geoip_data))
+    location = geoip_data["location"]
+    location["IP"] = request.remote_addr
+    location["ip_address"] = geoip_data.get("ip")
+    return location
     # session["user"] = request.remote_addr
     # return render_template("index.html")
