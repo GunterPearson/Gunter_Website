@@ -3,6 +3,7 @@
 from flask import Flask, render_template, session, request, jsonify
 from flask import redirect, flash, url_for
 import os
+from dotenv import load_dotenv
 from web_flask.forms import EmailForm
 from flask_simple_geoip import SimpleGeoIP
 from flask_mail import Message, Mail
@@ -10,15 +11,15 @@ from flask_cors import CORS
 app = Flask(__name__)
 cors = CORS(app, resources={r"": {"origins": "*"}})
 
-SECRET_KEY = os.urandom(32)
 
+load_dotenv()
+SECRET_KEY = os.urandom(32)
 MAIL_USERNAME = os.getenv('MAIL_USERNAME')
 MAIL_PASSWORD = os.getenv('MAIL_PASSWORD')
-LOGIN_USERNAME = os.getenv('LOGIN_USERNAME')
-LOGIN_PASSWORD = os.getenv('LOGIN_PASSWORD')
+GEOIPIFY_API_KEY = os.getenv('GEOIPIFY_API_KEY')
 
 app.config['SECRET_KEY'] = SECRET_KEY
-app.config["GEOIPIFY_API_KEY"] = "at_Odn3yiaerwjP1EPcvdotCZyrNitvL"
+app.config["GEOIPIFY_API_KEY"] = GEOIPIFY_API_KEY
 # app.config["DEBUG"] = True
 # app.config["TESTING"] = False
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'
