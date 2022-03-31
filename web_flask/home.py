@@ -48,7 +48,7 @@ def home():
     location["ip_address"] = geoip_data.get("ip")
     session["user"] = location
     if request.method == "POST":
-        msg = Message(form.subject.data, sender=form.email.data, recipients=['vikepi3161@vsooc.com'])
+        msg = Message(form.subject.data, sender=form.email.data, recipients=['gunterjpearson@gmail.com'])
         msg.body = form.name.data + "\n" + form.message.data + "\n\n" + form.email.data
         mail.send(msg)
     # return location
